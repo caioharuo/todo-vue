@@ -3,8 +3,8 @@
     class="flex gap-3 items-start p-4 bg-gray-500 border border-gray-400 rounded-lg"
   >
     <CheckboxRoot
-      @update:checked="toggleTaskChecked"
-      :checked="isChecked"
+      @update:checked="toggleTaskCompleted"
+      :checked="task.isCompleted"
       class="w-4 h-4 bg-transparent border-2 border-blue-500 rounded-full transition-colors data-[state=checked]:border-purple-700 data-[state=checked]:bg-purple-700 data-[state=checked]:hover:bg-purple-500 data-[state=checked]:hover:border-purple-500 hover:bg-blue-700/20"
     >
       <CheckboxIndicator
@@ -16,10 +16,9 @@
 
     <p
       class="flex-1 text-gray-100 text-sm leading-tight"
-      :class="{ ['text-gray-300 line-through']: isChecked }"
+      :class="{ ['text-gray-300 line-through']: task.isCompleted }"
     >
-      Integer urna interdum massa libero auctor neque turpis turpis semper. Duis
-      vel sed fames integer.
+      {{ task.name }}
     </p>
 
     <button
@@ -31,8 +30,11 @@
 </template>
 
 <script lang="ts">
+import type { PropType } from 'vue';
 import { CheckboxIndicator, CheckboxRoot } from 'radix-vue';
 import { PhTrash, PhCheck } from '@phosphor-icons/vue';
+
+import type { Task } from '../@types/task';
 
 export default {
   name: 'TaskCard',
@@ -42,12 +44,15 @@ export default {
     PhTrash,
     PhCheck,
   },
-  data: () => ({
-    isChecked: false,
-  }),
+  props: {
+    task: {
+      type: Object as PropType<Task>,
+      required: true,
+    },
+  },
   methods: {
-    toggleTaskChecked() {
-      this.isChecked = !this.isChecked;
+    toggleTaskCompleted() {
+      this.task.isCompleted = !this.task.isCompleted;
     },
   },
 };
