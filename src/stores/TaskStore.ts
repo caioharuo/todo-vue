@@ -17,5 +17,12 @@ export const useTasksStore = defineStore('tasks', {
     add(newTask: Task) {
       this.tasks.push(newTask);
     },
+    remove(taskId: string) {
+      const taskForRemovedIndex = this.tasks.findIndex(
+        (task) => task.id === taskId
+      );
+
+      this.tasks.splice(taskForRemovedIndex, 1);
+    },
   },
 });

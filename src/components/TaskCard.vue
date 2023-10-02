@@ -22,6 +22,7 @@
     </p>
 
     <button
+      @click="removeTask(task.id)"
       class="group transition rounded w-6 h-6 flex items-center justify-center hover:bg-gray-400"
     >
       <PhTrash class="text-gray-300 group-hover:text-red-500" />
@@ -31,9 +32,11 @@
 
 <script lang="ts">
 import type { PropType } from 'vue';
+import { mapStores } from 'pinia';
 import { CheckboxIndicator, CheckboxRoot } from 'radix-vue';
 import { PhTrash, PhCheck } from '@phosphor-icons/vue';
 
+import { useTasksStore } from '../stores/TaskStore';
 import type { Task } from '../@types/task';
 
 export default {
@@ -50,9 +53,15 @@ export default {
       required: true,
     },
   },
+  computed: {
+    ...mapStores(useTasksStore),
+  },
   methods: {
     toggleTaskCompleted() {
       this.task.isCompleted = !this.task.isCompleted;
+    },
+    removeTask(taskId: string) {
+      this.tasksStore.remove(taskId);
     },
   },
 };

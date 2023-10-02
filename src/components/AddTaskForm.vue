@@ -43,6 +43,7 @@ export default {
       if (!this.newTaskName.trim()) return;
 
       this.tasksStore.add({
+        id: this.$uuid.v4(),
         name: this.newTaskName,
         isCompleted: false,
       });

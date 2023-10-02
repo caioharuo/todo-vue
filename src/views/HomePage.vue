@@ -18,7 +18,7 @@ import TasksInfo from '../components/TasksInfo.vue';
 import TaskList from '../components/TaskList.vue';
 
 export default {
-  name: 'Home',
+  name: 'HomePage',
   components: {
     AppHeader,
     AddTaskForm,
