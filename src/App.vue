@@ -1,7 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Home from './views/Home.vue';
+</script>
 
 <template>
-  <h1 class="text-xl text-cyan-400">hello</h1>
+  <Home />
 </template>
-
-<style scoped></style>

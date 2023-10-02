@@ -2,6 +2,7 @@ module.exports = {
   content: ['./index.html', './src/**/*.{js,jsx,ts,tsx,vue}'],
   theme: {
     colors: {
+      transparent: 'transparent',
       blue: {
         500: '#4EA8DE',
         700: '#1E6F9F',
